@@ -89,9 +89,13 @@ $inuit-enable-btn--disabled: true;
 }
 
 :host {
-  display: block;
+  //display: block;
   overflow-x: hidden;
   width: 100%;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .pagination {
