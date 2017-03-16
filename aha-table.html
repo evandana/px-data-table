@@ -21,14 +21,14 @@
     <content id="columndefs"></content>
 
     <template is="dom-if" if="{{showColumnChooser}}">
-      <div id="showHideColumn" class="flex columnChooser u-mb-">
+      <div class="flex columnChooser u-mb-">
         <px-dropdown display-value="Show/Hide Column">
           <px-dropdown-content class="px-dropdown-content" checkbox-mode="true" items='{{_columnChooserItems}}'>
           </px-dropdown-content>
         </px-dropdown>
       </div>
     </template>
-    <div id="scrollPart" class="scroll-body">
+    <div class="scroll-body">
 
       <div id="scrollBodyTableContainer" class$="{{_getTableClass(tableRows, tableColumns)}}">
         <!-- Header -->
@@ -120,7 +120,7 @@
       </template>
     </div>
     <!-- Pagination controls -->
-    <div id="pagi" class="pagination">
+    <div class="pagination">
       <px-pagination class$="{{_getPaginationVisibility(hidePaginationControl)}}"
                      id="pagination"
                      number-of-items="{{numberOfItems}}"

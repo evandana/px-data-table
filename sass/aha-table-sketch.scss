@@ -98,12 +98,18 @@ $inuit-enable-btn--disabled: true;
   float: right;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+
+  flex: 0 0 34px;
 }
 
 .scroll-body {
+  flex: 1;
+  min-width: 0px;
+  overflow-y: auto;
+
   display: block;
   overflow-x: auto;
-  overflow-y: hidden;
+  //overflow-y: hidden;
   margin-bottom: 1rem;
   padding-left: 1px; /*firefox border collapse fix*/
   padding-right: 1px; /*firefox border collapse fix*/
@@ -139,6 +145,8 @@ label {
 .columnChooser {
   flex-direction: row-reverse;
   margin-right: 2px;
+
+  flex: 0 0 30px;
 }
 
 .moveable {
