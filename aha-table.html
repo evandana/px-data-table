@@ -429,15 +429,23 @@
       var scrollBody = Polymer.dom(aha.root).querySelector('.scroll-body.aha-table');
       var rowHeight = 42;
 
+      var closestPageSize;
+
       var optimizePageSize = Math.floor((Number(scrollBody.offsetHeight) - Number(th.offsetHeight)) / rowHeight);
       if (optimizePageSize <= 10) {
-        pagi._updatePageSize(10);
-      } else if (10 < optimizePageSize <= 20) {
-        pagi._updatePageSize(20);
-      } else if (20 < optimizePageSize <= 50) {
-        pagi._updatePageSize(50);
+        closestPageSize = 10;
+      } else if ((10 < optimizePageSize) &&(optimizePageSize <= 20)) {
+        closestPageSize = 20;
+      } else if ((20 < optimizePageSize) &&(optimizePageSize <= 50)) {
+        closestPageSize = 50;
       } else {
-        pagi._updatePageSize(100);
+        closestPageSize = 100;
+      }
+
+      if (!this.dataRemote) {
+        pagi._updatePageSize(closestPageSize);
+      }else {
+        this.fire('data-table-init', closestPageSize);
       }
     },
 
