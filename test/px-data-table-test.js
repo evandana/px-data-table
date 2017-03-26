@@ -1,4 +1,4 @@
-var table1Fixture, table2Fixture, table3Fixture, table4Fixture, table5Fixture, filtertest, resetDataFixture, additionalDataFixture, updateSelectFixture, remoteDataFixture1, remoteDataFixture2, remoteDataFixture3;
+var table1Fixture, table2Fixture, table3Fixture, table4Fixture, table5Fixture, filtertest, resetDataFixture, additionalDataFixture, updateSelectFixture, remoteDataFixture1, remoteDataFixture2, remoteDataFixture3, greedyHeightWithScrollFixture, clientSmartRowSelectionWithLargeHeightFixture, serverSmartRowSelectionWithLargeHeightFixture;
 var getStyle = function (el, style){
   return window.getComputedStyle( el, null ).getPropertyValue( style );
 };
@@ -787,8 +787,14 @@ document.addEventListener("WebComponentsReady", function() {
   remoteDataFixture3 = document.getElementById('remoteData3');
   remoteDataFixture3.tableData = minidata;
 
-  greedyHeightWithScroll = document.getElementById('greedyHeightWithScroll');
-  greedyHeightWithScroll.tableData = minidata;
+  greedyHeightWithScrollFixture = document.getElementById('greedyHeightWithScroll');
+  greedyHeightWithScrollFixture.tableData = minidata;
+
+  clientSmartRowSelectionWithLargeHeightFixture = document.getElementById('clientSmartRowSelectionWithLargeHeight');
+  clientSmartRowSelectionWithLargeHeightFixture.tableData = minidata;
+
+  serverSmartRowSelectionWithLargeHeightFixture = document.getElementById('serverSmartRowSelectionWithLargeHeight');
+  serverSmartRowSelectionWithLargeHeightFixture.tableData = minidata;
 
   runTests();
 });
@@ -1589,6 +1595,32 @@ function runTests() {
         assert.equal(paginationTextString, '1-20 of 100', 'Shows correct pagination counts.');
       });
 
+    });
+
+    suite('smart row selection for client or server side pagination', function () {
+      test('_optimizePageForLoad for client with small view size', function(done) {
+        var pxTable = document.getElementById('greedyHeightWithScroll');
+        var container = Polymer.dom(this.root).querySelector('#styledContainer1');
+        var pageSizeSelect = pxTable.querySelector('#pageSizeSelect');
+        assert.equal(pageSizeSelect.value, 10, 'small view size select page size 10');
+        done();
+      });
+
+      test('_optimizePageForLoad for client with large view size', function(done) {
+        var pxTable = document.getElementById('clientSmartRowSelectionWithLargeHeight');
+        var container = Polymer.dom(this.root).querySelector('#styledContainer2');
+        var pageSizeSelect = pxTable.querySelector('#pageSizeSelect');
+        assert.equal(pageSizeSelect.value, 20, 'large view size select closest page size');
+        done();
+      });
+
+       test('_optimizePageForLoad for remote data is true', function(done) {
+        var pxTable = document.getElementById('serverSmartRowSelectionWithLargeHeight');
+        var container = Polymer.dom(this.root).querySelector('#styledContainer3');
+        var pageSizeSelect = pxTable.querySelector('#pageSizeSelect');
+        assert.equal(pageSizeSelect.value, 10, 'server side pagination send out the closest page size as requested page size');
+        done();
+      });
     });
 
   });
