@@ -445,7 +445,9 @@
       if (!this.dataRemote) {
         pagi._updatePageSize(closestPageSize);
       }else {
-        this.fire('data-table-init', closestPageSize);
+        var obj = {};
+        obj.pageSize = closestPageSize;
+        this.fire('data-table-init', obj);
       }
     },
 
