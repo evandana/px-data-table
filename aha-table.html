@@ -416,14 +416,19 @@
       var boundHandler = this._columnChanged.bind(this);
       this._observer = Polymer.dom(this.$.columndefs).observeNodes(boundHandler);
     },
+
     attached: function () {
       this._isAttached = true;
 
-      window.addEventListener("load", this._optimizePageForLoad(this));
+      window.addEventListener("load", this._initializeTable(this));
+    },
+
+    detached: function () {
+      window.removeEventListener("load", this._initializeTable);
     },
 
     //This function will enable pageSize change at the initial load
-    _optimizePageForLoad: function (aha) {
+    _initializeTable: function (aha) {
       var pagi = Polymer.dom(aha.root).querySelector('#pagination');
       var th = Polymer.dom(aha.root).querySelector('.tr.aha-table');
       var scrollBody = Polymer.dom(aha.root).querySelector('.scroll-body.aha-table');
@@ -444,10 +449,8 @@
 
       if (!this.dataRemote) {
         pagi._updatePageSize(closestPageSize);
-      }else {
-        var obj = {};
-        obj.pageSize = closestPageSize;
-        this.fire('data-table-init', obj);
+      } else {
+        this.fire('data-table-init', { pageSize: closestPageSize });
       }
     },
 
