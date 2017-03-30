@@ -799,10 +799,10 @@ document.addEventListener("WebComponentsReady", function() {
   greedyHeightWithScrollFixture = document.getElementById('greedyHeightWithScroll');
   greedyHeightWithScrollFixture.tableData = minidata;
 
-  clientSmartRowSelectionWithLargeHeightFixture = document.getElementById('clientSmartRowSelectionWithLargeHeight');
+  clientSmartRowSelectionWithLargeHeightFixture = document.getElementById('greedyHeightWithScrollLarge');
   clientSmartRowSelectionWithLargeHeightFixture.tableData = minidata;
 
-  serverSmartRowSelectionWithLargeHeightFixture = document.getElementById('serverSmartRowSelectionWithLargeHeight');
+  serverSmartRowSelectionWithLargeHeightFixture = document.getElementById('greedyHeightWithScrollDataRemote');
   serverSmartRowSelectionWithLargeHeightFixture.tableData = minidata;
 
   runTests();
