@@ -1,7 +1,7 @@
 var table1Fixture, table2Fixture, table3Fixture, table4Fixture, table5Fixture, filtertest, 
 resetDataFixture, additionalDataFixture, updateSelectFixture, remoteDataFixture1, remoteDataFixture2, 
 remoteDataFixture3,remoteDataFilteringFixture1, remoteDataFilteringFixture2, greedyHeightWithScrollFixture,
-clientSmartRowSelectionWithLargeHeightFixture, serverSmartRowSelectionWithLargeHeightFixture;
+greedyHeightWithScrollLargeFixture, greedyHeightWithScrollDataRemoteFixture;
 var getStyle = function (el, style){
   return window.getComputedStyle( el, null ).getPropertyValue( style );
 };
@@ -799,11 +799,11 @@ document.addEventListener("WebComponentsReady", function() {
   greedyHeightWithScrollFixture = document.getElementById('greedyHeightWithScroll');
   greedyHeightWithScrollFixture.tableData = minidata;
 
-  clientSmartRowSelectionWithLargeHeightFixture = document.getElementById('greedyHeightWithScrollLarge');
-  clientSmartRowSelectionWithLargeHeightFixture.tableData = minidata;
+  greedyHeightWithScrollLargeFixture = document.getElementById('greedyHeightWithScrollLarge');
+  greedyHeightWithScrollLargeFixture.tableData = minidata;
 
-  serverSmartRowSelectionWithLargeHeightFixture = document.getElementById('greedyHeightWithScrollDataRemote');
-  serverSmartRowSelectionWithLargeHeightFixture.tableData = minidata;
+  greedyHeightWithScrollDataRemoteFixture = document.getElementById('greedyHeightWithScrollDataRemote');
+  greedyHeightWithScrollDataRemoteFixture.tableData = minidata;
 
   runTests();
 });
