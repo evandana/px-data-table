@@ -1,9 +1,12 @@
-var table1Fixture, table2Fixture, table3Fixture, table4Fixture, table5Fixture, filtertest, resetDataFixture, additionalDataFixture, updateSelectFixture, remoteDataFixture1, remoteDataFixture2, remoteDataFixture3;
+var table1Fixture, table2Fixture, table3Fixture, table4Fixture, table5Fixture, filtertest, resetDataFixture, 
+  additionalDataFixture, updateSelectFixture, remoteDataFixture1, remoteDataFixture2, remoteDataFixture3, 
+  remoteDataFilteringFixture1, remoteDataFilteringFixture2, remoteDataSortingFixture1, remoteDataSortingFixture2, 
+  greedyHeightWithScrollFixture, greedyHeightWithScrollLargeFixture, greedyHeightWithScrollDataRemoteFixture;
 var getStyle = function (el, style){
   return window.getComputedStyle( el, null ).getPropertyValue( style );
 };
-var data =
-[
+
+var data =[
   {
     "index": 0,
     "name": "Liz Grimes",
@@ -499,7 +502,9 @@ var data =
     "color": "rgb(218,74,95)"
   }
 ];
-var additionalData = [  {
+
+var additionalData = [  
+  {
   "index": 26,
   "name": "Cooley Macdonald Two",
   "first": "Aida",
@@ -517,7 +522,7 @@ var additionalData = [  {
   "email": "aidahurley@scentric.com",
   "phone": "(975) 451-3272",
   "color": "rgb(119,239,85)"
-},
+  },
   {
     "index": 27,
     "name": "Snow Blankenship Two",
@@ -575,9 +580,9 @@ var additionalData = [  {
     "phone": "(852) 538-3232",
     "color": "rgb(218,74,95)"
   }
-];
-var minidata =
-[
+  ];
+  var minidata =
+  [
   {
     "first": "Valentine",
     "last": "Meyer",
@@ -751,8 +756,10 @@ var minidata =
 ];
 
 document.addEventListener("WebComponentsReady", function() {
+
   table1Fixture = document.getElementById('table1');
   table1Fixture.tableData = data;
+
   table2Fixture = document.getElementById('table2');
   table2Fixture.tableData = minidata;
 
@@ -787,8 +794,26 @@ document.addEventListener("WebComponentsReady", function() {
   remoteDataFixture3 = document.getElementById('remoteData3');
   remoteDataFixture3.tableData = minidata;
 
-  greedyHeightWithScroll = document.getElementById('greedyHeightWithScroll');
-  greedyHeightWithScroll.tableData = minidata;
+  remoteDataFilteringFixture1 = document.getElementById('remoteDataFiltering1');
+  remoteDataFilteringFixture1.tableData = minidata;
+
+  remoteDataFilteringFixture2 = document.getElementById('remoteDataFiltering2');
+  remoteDataFilteringFixture2.tableData = minidata;
+
+  remoteDataSortingFixture1 = document.getElementById('remoteDataSorting1');
+  remoteDataSortingFixture1.tableData = minidata;
+
+  remoteDataSortingFixture2 = document.getElementById('remoteDataSorting2');
+  remoteDataSortingFixture2.tableData = minidata;
+
+  greedyHeightWithScrollFixture = document.getElementById('greedyHeightWithScroll');
+  greedyHeightWithScrollFixture.tableData = minidata;
+
+  greedyHeightWithScrollLargeFixture = document.getElementById('greedyHeightWithScrollLarge');
+  greedyHeightWithScrollLargeFixture.tableData = minidata;
+
+  greedyHeightWithScrollDataRemoteFixture = document.getElementById('greedyHeightWithScrollDataRemote');
+  greedyHeightWithScrollDataRemoteFixture.tableData = minidata;
 
   runTests();
 });
@@ -796,6 +821,7 @@ document.addEventListener("WebComponentsReady", function() {
 
 
 function runTests() {
+  
   suite('Unit Tests for Data Table', function() {
 
     test('Polymer exists', function() {
@@ -1119,7 +1145,7 @@ function runTests() {
           done();
         });
       });
-    });
+  });
 
   suite('Table data mutations tests', function(){
     //uses table3Fixture - no other tests using this. Adding/removing rows could unsettle other tests if they were using this fixture.
@@ -1453,11 +1479,11 @@ function runTests() {
         assert(page2IconClassList.indexOf('btn--bare') > -1, 'Does not have btn-bare class.');
       });
 
-      test('Clicking Next Page button fires a `page-change-intent` event', function(done) {
+      test('Clicking Next Page button fires a `px-page-change-intent` event', function(done) {
         var dataTable = document.getElementById('remoteData1');
         var pageChangeButton = dataTable.querySelector('.paging.px-pagination .btn--pagination.next');
 
-        dataTable.addEventListener('page-change-intent', (evt) => {
+        dataTable.addEventListener('px-page-change-intent', (evt) => {
           assert(true, 'Event is triggered');
           assert.equal(parseInt(evt.detail,10), 2, 'Requesting page 2');
           done();
@@ -1485,7 +1511,6 @@ function runTests() {
       });
 
     });
-
 
     suite('Page 2', function () {
 
@@ -1523,11 +1548,11 @@ function runTests() {
         assert.equal(page2IconClassList.indexOf('btn--bare'), -1, 'Does not have btn-bare class.');
       });
 
-      test('Clicking Previous Page button fires a `page-change-intent` event', function(done) {
+      test('Clicking Previous Page button fires a `px-page-change-intent` event', function(done) {
         var dataTable = document.getElementById('remoteData2');
         var pageChangeButton = dataTable.querySelector('.paging.px-pagination .btn--pagination.previous');
 
-        dataTable.addEventListener('page-change-intent', (evt) => {
+        dataTable.addEventListener('px-page-change-intent', (evt) => {
           assert(true, 'Event is triggered');
           assert.equal(parseInt(evt.detail,10), 1, 'Requesting page 1');
           done();
@@ -1558,12 +1583,12 @@ function runTests() {
 
     suite('Rows per Page Dropdown', function () {
 
-      test('On change, it fires a `page-size-change-intent` event', function(done) {
+      test('On change, it fires a `px-page-size-change-intent` event', function(done) {
         var dataTable = document.getElementById('remoteData3');
         var pageSizeSelectDropdown = dataTable.querySelector('#pageSizeSelect');
         
 
-        dataTable.addEventListener('page-size-change-intent', (evt) => {
+        dataTable.addEventListener('px-page-size-change-intent', (evt) => {
           assert(true, 'Event is triggered');
           assert.equal(parseInt(evt.detail,10), 50, 'Requesting page size of 50');
           done();
@@ -1587,6 +1612,113 @@ function runTests() {
         var paginationSpan = dataTable.querySelector('.summary.style-scope.px-pagination');
         var paginationTextString = paginationSpan.textContent.replace(/\s\s*/g,' ').trim();
         assert.equal(paginationTextString, '1-20 of 100', 'Shows correct pagination counts.');
+      });
+
+    });
+
+    suite('smart row selection for client or server side pagination', function () {
+      test('_initializeTable for client with small view size', function(done) {
+        var pxTable = document.getElementById('greedyHeightWithScroll');
+        var pageSizeSelect = pxTable.querySelector('#pageSizeSelect');
+        assert.equal(pageSizeSelect.value, 10, 'small view size select page size 10');
+        done();
+      });
+
+      test('_initializeTable for client with large view size', function(done) {
+        var pxTable = document.getElementById('greedyHeightWithScrollLarge');
+        var pageSizeSelect = pxTable.querySelector('#pageSizeSelect');
+        assert.equal(pageSizeSelect.value, 20, 'large view size select closest page size');
+        done();
+      });
+
+       test('_initializeTable for remote data is true', function(done) {
+        var pxTable = document.getElementById('greedyHeightWithScrollDataRemote');
+        var pageSizeSelect = pxTable.querySelector('#pageSizeSelect');
+        assert.equal(pageSizeSelect.value, 10, 'server side pagination send out the closest page size as requested page size');
+        done();
+      });
+
+    });
+
+    suite('Filtering', function () {
+
+      test('Send event with combined filter string for one column', function (done) {
+        
+          var dataTable = document.querySelector('#remoteDataFiltering1');
+          var lastNameFilterSelector = 'div > div.tr.tr--filter > :nth-child(2) > input';
+          var lastNameFilter = dataTable.querySelector(lastNameFilterSelector);
+
+          dataTable.addEventListener('px-filter-change-intent', (evt) => {
+            assert(true, 'Event is triggered');
+            assert.equal(evt.detail, '[{"name":"last","userEntry":"ab"}]', 'Requesting filter change');
+            done();
+          });
+
+          lastNameFilter.value = 'ab';
+          lastNameFilter.dispatchEvent(new Event('keyup'));
+      });
+
+      test('Send event with combined filter string for all columns', function (done) {
+        
+          var filters = [{name:'first', userEntry:'ab'}, {name:'last', userEntry:'cd'}];
+
+          var dataTable = document.querySelector('#remoteDataFiltering2');
+          var ahaTable = dataTable.querySelector('#dataTable');
+
+          var firstNameFilterSelector = 'div > div.tr.tr--filter > :nth-child(1) > input';
+          var firstNameFilter = dataTable.querySelector(firstNameFilterSelector);
+
+          var lastNameFilterSelector = 'div > div.tr.tr--filter > :nth-child(2) > input';
+          var lastNameFilter = dataTable.querySelector(lastNameFilterSelector);
+
+          var imageFilterSelector = 'div > div.tr.tr--filter > :nth-child(3) > input';
+          var imageFilter = dataTable.querySelector(imageFilterSelector);
+
+          dataTable.addEventListener('px-filter-change-intent', (evt) => {
+            assert(true, 'Event is triggered');
+            assert.equal(evt.detail, JSON.stringify(filters), 'Requesting filter change on multiple columns');
+            done();
+          });
+
+          ahaTable.filteredColumns = filters;
+          imageFilter.dispatchEvent(new Event('keyup'));
+
+      });
+    });
+
+    suite('Sorting', function () {
+
+      test('Send event with combined sort string for one column', function (done) {
+        
+          var dataTable = document.querySelector('#remoteDataSorting1');
+          var sortHeadingSelector = 'div > div.tr .th:nth-of-type(2) .column-head.sorted-text-hover';
+          var sortHeading = dataTable.querySelector(sortHeadingSelector);
+
+          dataTable.addEventListener('px-sort-change-intent', (evt) => {
+            assert(true, 'Event is triggered');
+            assert.equal(evt.detail, '[{"name":"last","direction":"ascending"}]', 'Requesting sort change');
+            done();
+          });
+
+          sortHeading.dispatchEvent(new Event('click'));
+      });
+
+      test('Send event with combined sort string for one column', function (done) {
+        
+          var dataTable = document.querySelector('#remoteDataSorting2');
+          var sortHeadingSelector = 'div > div.tr .th:nth-of-type(2) .column-head.sorted-text-hover';
+          var sortHeading = dataTable.querySelector(sortHeadingSelector);
+
+          sortHeading.dispatchEvent(new Event('click'));
+
+          dataTable.addEventListener('px-sort-change-intent', (evt) => {
+            assert(true, 'Event is triggered');
+            assert.equal(evt.detail, '[{"name":"last","direction":"descending"}]', 'Requesting sort change');
+            done();
+          });
+
+          // second click
+          sortHeading.dispatchEvent(new Event('click'));
       });
 
     });
