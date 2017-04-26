@@ -33,7 +33,7 @@ common/abstract rules go in px-data-table-sketch.scss, not in this file.
 .greedy-height-with-scroll.scroll-body {
   flex: var(--px-data-table-scroll-body-flex-greedy-height-with-scroll, 1);
   min-width: var(--px-data-table-scroll-body-min-width-greedy-height-with-scroll, 0px);
-  overflow-y: var(--px-data-table-scroll-body-overflow-y-greedy-height-with-scroll, auto);
+  // overflow-y: var(--px-data-table-scroll-body-overflow-y-greedy-height-with-scroll, auto);
 }
 
 .greedy-height-with-scroll.pagination {
