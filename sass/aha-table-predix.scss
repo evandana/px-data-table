@@ -49,6 +49,7 @@ common/abstract rules go in px-data-table-sketch.scss, not in this file.
   display: var(--px-data-table-aha-table-display-greedy-height-with-scroll, flex);
   flex: var(--px-data-table-aha-table-flex-greedy-height-with-scroll, 1);
   flex-direction: var(--px-data-table-aha-table-flex-direction-greedy-height-with-scroll, column);
+  overflow: var(--px-data-table-aha-table-overflow-greedy-height-with-scroll, visible);
 }
 
 .greedy-height-with-scroll.scroll-body {
