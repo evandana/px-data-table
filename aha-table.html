@@ -744,6 +744,8 @@
             cellDataObj[key] = {};
             cellDataObj[key].value = thisObj[key];
             if (resetDataFlag) {
+              console.log("this is cellDataObj[key]");
+              console.log(cellDataObj[key]);
               cellDataObj[key]._validation = { passedValidation: true };
             } else {
               cellDataObj[key]._validation = this._internalData[i].row[key]._validation;
