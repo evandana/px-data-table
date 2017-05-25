@@ -737,6 +737,8 @@
         var thisObj = this.data[i],
           cellDataObj = { dataIndex: i },
           resetDataFlag = resetDataState || i >= this._internalData.length;
+          console.log("this is thisObj");
+          console.log(thisObj);
         for (var key in thisObj) {
           if (Object.prototype.hasOwnProperty.call(thisObj, key)) {
             cellDataObj[key] = {};
