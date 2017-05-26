@@ -586,7 +586,7 @@
       if (typeof this._internalData !== "undefined" && this._internalData.length === 0) {
         this._internalData = this._initializeInternalData();
       } else {
-        this._internalData = this._refreshInternalData();
+        this._internalData = this._refreshInternalData(true);
       }
       this.selectedRows = this._internalData.filter(function (it) {
         return it._selected === true;
@@ -744,8 +744,6 @@
             cellDataObj[key] = {};
             cellDataObj[key].value = thisObj[key];
             if (resetDataFlag) {
-              console.log("this is cellDataObj[key]");
-              console.log(cellDataObj[key]);
               cellDataObj[key]._validation = { passedValidation: true };
             } else {
               cellDataObj[key]._validation = this._internalData[i].row[key]._validation;
