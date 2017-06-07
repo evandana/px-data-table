@@ -27,9 +27,7 @@
                 </px-dropdown>
             </div>
         </template>
-        <div class$="scroll-body {{_getScrollBodyClass(greedyHeightWithScroll)}}">
-          <div id="scrollBodyTableContainer" class$="{{_getTableClass(tableRows, tableColumns)}}">
-          <!-- Header -->
+        <!-- Header -->
               <div class="tr">
                   <template is="dom-repeat" items="{{meta}}" as="column">
                       <template is="dom-if" if="{{!column.hide}}">
@@ -48,7 +46,7 @@
                   </template>
               </div>
               <!-- Second Header (filter/select all) -->
-              <div class$="{{_getSecondHeaderClass(_enableFilterRow)}}">
+              <div class$="table table--small table--rows {{_getSecondHeaderClass(_enableFilterRow)}}">
                   <template is="dom-repeat" items="{{meta}}" as="column" id="filterRepeat">
                       <span class$="{{_getFilterHeaderClass(column)}}" hidden$="{{column.hide}}">
                           <!-- select all checkbox -->
@@ -66,6 +64,8 @@
                       </span>
                   </template>
               </div>
+          <div class$="scroll-body {{_getScrollBodyClass(greedyHeightWithScroll)}}">
+          <div id="scrollBodyTableContainer" class$="{{_getTableClass(tableRows, tableColumns)}}">
               <!-- Data rows -->
               <template id="recordList" is="dom-repeat" items="{{displayedRows}}" as="internalRow" strip-whitespace>
                   <div class$="{{_getRowClass(internalRow,striped)}}">
