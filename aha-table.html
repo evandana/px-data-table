@@ -35,7 +35,8 @@
     </template>
 
     <div class="scroll-body">
-    <div id="scrollBodyTableContainer" class$="{{_getTableClass(tableRows, tableColumns)}}" role="grid">
+
+      <div id="scrollBodyTableContainer" class$="{{_getTableClass(tableRows, tableColumns)}}" role="grid">
     <!-- Header -->
       <div class="tr" role="row">
         <template is="dom-repeat" items="{{meta}}" as="column">
@@ -134,6 +135,8 @@
           </template>
         </div>
       </template>
+      </div>
+      
       <template is="dom-if" if="{{!displayedRows.length}}">
         <div class="flex flex--center no-results">No Results</div>
       </template>
