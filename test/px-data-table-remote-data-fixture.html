@@ -11,7 +11,7 @@
     <!-- web-component-tester automatically provides local copy of brower.js below
          for any URL ending with "/web-component-tester/browser.js"
          when wct is run from the command line -->
-    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <script src="../web-component-tester/browser.js"></script>
     <link rel="import" href="../px-data-table.html" />
     <link rel="import" href="../../px-theme/px-theme-styles.html">
     <style include="px-theme-styles" is="custom-style"></style>
@@ -126,6 +126,116 @@
 
       <p>Selection after data update does not contain unreached data</p>
       <px-data-table id="updateTableWithSelection" selectable></px-data-table>
+
+      <hr/>
+
+      <p>Remote Data, Page 1 of 10</p>
+      <px-data-table
+        id="remoteData1"
+        total-entries="100"
+        data-remote="true"
+        >
+      </px-data-table>
+
+      <p>Remote Data, Page 2 of 10</p>
+      <px-data-table
+        id="remoteData2"
+        first-item-index="11"
+        total-entries="100"
+        data-remote="true"
+        page-size="10"
+        >
+      </px-data-table>
+
+      <hr/>
+
+      <p>Remote Data, Page Size Dopdown</p>
+      <px-data-table
+        id="remoteData3"
+        first-item-index="1"
+        total-entries="100"
+        data-remote="true"
+        page-size="10"
+        >
+      </px-data-table>
+
+      <p>Remote Data, Filtering</p>
+      <px-data-table
+        id="remoteDataFiltering1"
+        total-entries="100"
+        data-remote="true"
+        filterable="true"
+        >
+      </px-data-table>
+
+      <p>Remote Data, Filtering</p>
+      <px-data-table
+        id="remoteDataFiltering2"
+        total-entries="100"
+        data-remote="true"
+        filterable="true"
+        >
+      </px-data-table>
+
+      <hr/>
+
+      <p>Remote Data, Sorting</p>
+      <px-data-table
+        id="remoteDataSorting1"
+        total-entries="100"
+        data-remote="true"
+        sortable="true"
+        >
+      </px-data-table>
+
+      <p>Remote Data, Sorting</p>
+      <px-data-table
+        id="remoteDataSorting2"
+        total-entries="100"
+        data-remote="true"
+        sortable="true"
+        >
+      </px-data-table>
+
+      <hr/>
+
+      <p>Greedy-height with Scroll</p>
+      <div style=" height:300px; border: 1px solid cyan; flex:1; display:flex; flex-direction:column; ">
+        <px-data-table
+          enable-column-resize="true"
+          greedy-height-with-scroll="true"
+          id="greedyHeightWithScroll"
+          page-size="10"
+          show-column-chooser="true"
+          table-rows="true"
+          >
+        </px-data-table>
+      </div>
+
+      <p>Smart Row Selection, client</p>
+      <div style=" height:800px; border: 1px solid cyan; flex:1; display:flex; flex-direction:column; ">
+        <px-data-table
+          enable-column-resize="true"
+          greedy-height-with-scroll="true"
+          id="greedyHeightWithScrollLarge"
+          show-column-chooser="true"
+          table-rows="true"
+          >
+        </px-data-table>
+      </div>
+
+      <p>Smart Row Selection, server</p>
+      <div style=" height:900px; border: 1px solid cyan; flex:1; display:flex; flex-direction:column; ">
+        <px-data-table
+          enable-column-resize="true"
+          greedy-height-with-scroll="true"
+          id="greedyHeightWithScrollDataRemote"
+          show-column-chooser="true"
+          data-remote="true"
+          table-rows="true"
+          >
+        </px-data-table>
+      </div>
 
   </body>
 </html>
