@@ -1,12 +1,12 @@
 {
     "name": "px-data-table",
     "author": "General Electric",
-    "description": "A Px component",
-    "version": "2.0.0",
+    "description": "A Px component - with custom modifications for Alarm Management",
+    "version": "v1.15.11-alarm-management",
     "extName": null,
     "repository": {
         "type": "git",
-        "url": "https://github.com/PredixDev/px-data-table.git"
+        "url": "https://github.com/evandana/px-data-table.git"
     },
     "homepage": "http://predix.io/",
     "devDependencies": {
